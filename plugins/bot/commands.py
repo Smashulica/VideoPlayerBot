@@ -26,36 +26,36 @@ from plugins.bot.controls import is_admin
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton, InputMediaDocument
 
 
-HOME_TEXT = "👋🏻 **Hi [{}](tg://user?id={})**, \n\nI'm **Video Player Bot**. \nI Can Stream Lives, YouTube Videos & Telegram Video Files On Voice Chat Of Telegram Channels & Groups 😉! \n\n**Made With ❤️ By @ImSafone!** 👑"
+HOME_TEXT = "👋🏻 **Salut\Buna [{}](tg://user?id={})**, \n\nEu sunt **Video Player Bot**. \nPoate face stream video, Radio, YouTube & la fisiere de pe Telegram audio / video direct in grup pe voice chat. Hai sa ne bucuram impreuna de acest bot pe @filme4kpetelegram 😉! \n\n**Made With ❤️ By @OTRofficial ❌ LupiiDinHaita !** 🐺"
 HELP_TEXT = """
-🏷️ --**Setting Up**-- :
+🏷️ --**Cum sa setezi BOT'ul**-- :
 
-\u2022 Add the bot and user account in your group with admin rights.
-\u2022 Start a voice chat in your group & restart the bot if not joined to vc.
-\u2022 Use /play [video name] or use /play as a reply to an video file or youtube link.
+\u2022 Porneste un voice chat pe grup!
+\u2022 Adauga @OTRmoviebot in grupul tau!
+\u2022 Foloseste /play [nume video] sau foloseste /play ca raspuns la un fisier video trimis sau link de YouTube.
 
-🏷️ --**Common Commands**-- :
+🏷️ --**Comenzi**-- :
 
 \u2022 `/start` - start the bot
 \u2022 `/help` - shows the help
 \u2022 `/playlist` - shows the playlist
 
-🏷️ --**Admins Only Commands**-- :
+🏷️ --**Comenzi ADMIN ONLY**-- :
 
-\u2022 `/skip` - skip current video
-\u2022 `/stream` - start live stream
-\u2022 `/pause` - pause playing video
-\u2022 `/resume` - resume playing video
-\u2022 `/leave` - leave the voice chat
-\u2022 `/shuffle` - shuffle the playlist
-\u2022 `/volume` - change volume (0-200)
-\u2022 `/replay` - play from the beginning
-\u2022 `/clrlist` - clear the playlist queue
+\u2022 `/skip` - da skip la video curent
+\u2022 `/stream` - porneste un stream live
+\u2022 `/pause` - pune pauza la video
+\u2022 `/resume` - da resume la video
+\u2022 `/leave` - scoate bot'ul de pe voice chat
+\u2022 `/shuffle` - amesteca playlist'ul
+\u2022 `/volume` - schimba volumul (0-200)
+\u2022 `/replay` - da play de la inceput
+\u2022 `/clrlist` - sterge tot din playlist'ul curent
 \u2022 `/getlogs` - get the ffmpeg bot logs
 \u2022 `/restart` - update & restart the bot
 
 © **Powered By** : 
-**@AsmSafone | @SafoTheBot** 👑
+**@OTRofficial | @LupiiDinHaita** 🔥
 """
 
 admin_filter=filters.create(is_admin) 
@@ -64,18 +64,18 @@ admin_filter=filters.create(is_admin)
 async def start(client, message):
     buttons = [
             [
-                InlineKeyboardButton("SEARCH INLINE", switch_inline_query_current_chat=""),
+                InlineKeyboardButton("CAUTA INLINE", switch_inline_query_current_chat=""),
             ],
             [
-                InlineKeyboardButton("CHANNEL", url="https://t.me/AsmSafone"),
-                InlineKeyboardButton("SUPPORT", url="https://t.me/SafoTheBot"),
+                InlineKeyboardButton("CHANNEL", url="https://t.me/OTRportal"),
+                InlineKeyboardButton("SUPPORT", url="https://t.me/OTRofficial"),
             ],
             [
-                InlineKeyboardButton("MORE BOTS", url="https://t.me/AsmSafone/173"),
-                InlineKeyboardButton("SOURCE CODE", url="https://github.com/AsmSafone/VideoPlayerBot/tree/alpha"),
+                InlineKeyboardButton("H.A.I.T.A.🐺🎭😍⚔❤", url="https://t.me/LupiiDinHaita"),
+                InlineKeyboardButton("Grupuri Romanesti", url="https://t.me/GrupuriRomanesti"),
             ],
             [
-                InlineKeyboardButton("❔ HOW TO USE ❔", callback_data="help"),
+                InlineKeyboardButton("❔ CUM SE FOLOSESTE ❔", callback_data="help"),
             ]
             ]
     reply_markup = InlineKeyboardMarkup(buttons)
@@ -87,16 +87,16 @@ async def start(client, message):
 async def show_help(client, message):
     buttons = [
             [
-                InlineKeyboardButton("CHANNEL", url="https://t.me/AsmSafone"),
-                InlineKeyboardButton("SUPPORT", url="https://t.me/SafoTheBot"),
+                InlineKeyboardButton("CHANNEL", url="https://t.me/OTRportal"),
+                InlineKeyboardButton("SUPPORT", url="https://t.me/OTRofficial"),
             ],
             [
-                InlineKeyboardButton("MORE BOTS", url="https://t.me/AsmSafone/173"),
-                InlineKeyboardButton("SOURCE CODE", url="https://github.com/AsmSafone/VideoPlayerBot/tree/alpha"),
+                InlineKeyboardButton("H.A.I.T.A.🐺🎭😍⚔❤", url="https://t.me/LupiiDinHaita"),
+                InlineKeyboardButton("Grupuri Romanesti", url="https://t.me/GrupuriRomanesti"),
             ],
             [
-                InlineKeyboardButton("BACK HOME", callback_data="home"),
-                InlineKeyboardButton("CLOSE MENU", callback_data="close"),
+                InlineKeyboardButton("INAPOI", callback_data="home"),
+                InlineKeyboardButton("INCHIDE MENIU", callback_data="close"),
             ]
             ]
     reply_markup = InlineKeyboardMarkup(buttons)
@@ -109,10 +109,10 @@ async def show_help(client, message):
 
 @Client.on_message(filters.command(['restart', 'update', f"restart@{Config.BOT_USERNAME}", f"update@{Config.BOT_USERNAME}"]) & admin_filter)
 async def update_handler(client, message):
-    k=await message.reply_text("🔄 **Restarting ...**")
+    k=await message.reply_text("🔄 **Ma restartez ...**")
     await update()
     try:
-        await k.edit("✅ **Restarted Successfully! \nJoin @AsmSafone For More!**")
+        await k.edit("✅ **Restart reusit! \nViziteaza @OTRofficial ❌ @LupiiDinHaita 🐺!**")
     except:
         pass
 
@@ -127,4 +127,4 @@ async def get_logs(client, message):
         await message.reply_media_group(logs)
         logs.clear()
     else:
-        await message.reply_text("❌ **No Log Files Found !**")
+        await message.reply_text("❌ **Nu am gasit fisiere LOG !**")
