@@ -30,7 +30,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
     admins = await get_admins(Config.CHAT_ID)
     if query.from_user.id not in admins and query.data != "help":
         await query.answer(
-            "You're Not Allowed! 🤣",
+            "Nu ai acces! 🤣",
             show_alert=True
             )
         return
@@ -53,11 +53,11 @@ async def cb_handler(client: Client, query: CallbackQuery):
 
     elif query.data.lower() == "pause":
         if Config.PAUSE:
-            await query.answer("⏸ Already Paused !", show_alert=True)
+            await query.answer("⏸ Am pus deja pauza !", show_alert=True)
         else:
             await pause()
             await sleep(1)
-            await query.answer("⏸ Paused !", show_alert=True)
+            await query.answer("⏸ Pauza !", show_alert=True)
         pl=await get_playlist_str()
         try:
             await query.message.edit(f"{pl}",
@@ -69,11 +69,11 @@ async def cb_handler(client: Client, query: CallbackQuery):
     
     elif query.data.lower() == "resume":   
         if not Config.PAUSE:
-            await query.answer("▶️ Already Resumed !", show_alert=True)
+            await query.answer("▶️ Am dat deja resume !", show_alert=True)
         else:
             await resume()
             await sleep(1)
-            await query.answer("▶️ Resumed !", show_alert=True)
+            await query.answer("▶️ Redau din nou !", show_alert=True)
         pl=await get_playlist_str()
         try:
             await query.message.edit(f"{pl}",
@@ -89,7 +89,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
         else:
             await skip()
             await sleep(1)
-            await query.answer("⏭ Skipped !", show_alert=True)
+            await query.answer("⏭ Am dat skip !", show_alert=True)
         pl=await get_playlist_str()
         try:
             await query.message.edit(f"{pl}",
@@ -105,7 +105,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
         else:
             await restart_playout()
             await sleep(1)
-            await query.answer("🔂 Replaying !", show_alert=True)
+            await query.answer("🔂 Replay !", show_alert=True)
         pl=await get_playlist_str()
         try:
             await query.message.edit(f"{pl}",
@@ -122,12 +122,12 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 InlineKeyboardButton("SUPPORT", url="https://t.me/SafoTheBot"),
             ],
             [
-                InlineKeyboardButton("MORE BOTS", url="https://t.me/AsmSafone/173"),
-                InlineKeyboardButton("SOURCE CODE", url="https://github.com/AsmSafone/VideoPlayerBot/tree/alpha"),
+                InlineKeyboardButton("H.A.I.T.A.🐺🎭😍⚔❤", url="https://t.me/LupiiDinHaita"),
+                InlineKeyboardButton("Grupuri Romanesti", url="https://t.me/GrupuriRomanesti"),
             ],
             [
-                InlineKeyboardButton("BACK HOME", callback_data="home"),
-                InlineKeyboardButton("CLOSE MENU", callback_data="close"),
+                InlineKeyboardButton("INAPOI", callback_data="home"),
+                InlineKeyboardButton("INCHIDE MENIU", callback_data="close"),
             ]
             ]
         reply_markup = InlineKeyboardMarkup(buttons)
@@ -144,18 +144,18 @@ async def cb_handler(client: Client, query: CallbackQuery):
     elif query.data=="home":
         buttons = [
             [
-                InlineKeyboardButton("SEARCH INLINE", switch_inline_query_current_chat=""),
+                InlineKeyboardButton("CAUTA INLINE", switch_inline_query_current_chat=""),
             ],
             [
-                InlineKeyboardButton("CHANNEL", url="https://t.me/AsmSafone"),
-                InlineKeyboardButton("SUPPORT", url="https://t.me/SafoTheBot"),
+                InlineKeyboardButton("CHANNEL", url="https://t.me/OTRportal"),
+                InlineKeyboardButton("SUPPORT", url="https://t.me/OTRofficial"),
             ],
             [
-                InlineKeyboardButton("MORE BOTS", url="https://t.me/AsmSafone/173"),
-                InlineKeyboardButton("SOURCE CODE", url="https://github.com/AsmSafone/VideoPlayerBot/tree/alpha"),
+                InlineKeyboardButton("H.A.I.T.A.🐺🎭😍⚔❤", url="https://t.me/LupiiDinHaita"),
+                InlineKeyboardButton("Grupuri Romanesti", url="https://t.me/GrupuriRomanesti"),
             ],
             [
-                InlineKeyboardButton("❔ HOW TO USE ❔", callback_data="help"),
+                InlineKeyboardButton("❔ CUM SE FOLOSESTE ❔", callback_data="help"),
             ]
             ]
         reply_markup = InlineKeyboardMarkup(buttons)
