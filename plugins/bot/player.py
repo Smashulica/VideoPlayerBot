@@ -49,7 +49,7 @@ async def add_to_playlist(_, message: Message):
         m_video = message.reply_to_message.document
         type='video'
         if not "video" in m_video.mime_type:
-            return await msg.edit("🚫 **Invalid Video File !**")
+            return await msg.edit("🚫 **Fisier video invalid !**")
     else:
         if message.reply_to_message:
             link=message.reply_to_message.text
@@ -70,7 +70,7 @@ async def add_to_playlist(_, message: Message):
                 type="query"
                 ysearch=query
         else:
-            await message.reply_text("❗ **Send Me An YouTube Video Name / YouTube Video Link / Reply To Video To Play In Video Chat !**")
+            await message.reply_text("❗ __Te rog sa trimiti un link de stream sau un video de pe YouTube pentru a porni streamul video!**")
             return
     user=f"[{message.from_user.first_name}](tg://user?id={message.from_user.id})"
     if type=="video":
@@ -92,7 +92,7 @@ async def add_to_playlist(_, message: Message):
                 title = results[0]["title"][:40]
             except Exception as e:
                 await msg.edit(
-                    "**Literary Found Noting**!\nTry Searching On Inline 😉!"
+                    "**Nu am gasit absolut nimic**!\nIncearca sa cauti inline 😉!"
                 )
                 LOGGER.error(str(e))
                 return
@@ -137,32 +137,32 @@ async def add_to_playlist(_, message: Message):
 @Client.on_message(filters.command(["leave", f"leave@{Config.BOT_USERNAME}"]) & admin_filter & (filters.chat(Config.CHAT_ID) | filters.private | filters.chat(Config.LOG_GROUP)))
 async def leave_voice_chat(_, m: Message):
     if not Config.CALL_STATUS:
-        return await m.reply_text("🤖 **Didn't Joined Video Chat !**")
+        return await m.reply_text("🤖 **Nu am intrat inca pe Video Voice !**")
     await leave_call()
-    await m.reply_text("✅ **Left From Video Chat !**")
+    await m.reply_text("✅ **Am parasit Video Voice !**")
 
 
 @Client.on_message(filters.command(["shuffle", f"shuffle@{Config.BOT_USERNAME}"]) & admin_filter & (filters.chat(Config.CHAT_ID) | filters.private | filters.chat(Config.LOG_GROUP)))
 async def shuffle_play_list(client, m: Message):
     if not Config.CALL_STATUS:
-        return await m.reply_text("🤖 **Didn't Joined Video Chat !**")
+        return await m.reply_text("🤖 **Nu am intrat inca pe Video Voice !**")
     else:
         if len(Config.playlist) > 2:
-            await m.reply_text(f"🔄 **Playlist Shuffled !**")
+            await m.reply_text(f"🔄 **Playlist amestecat !**")
             await shuffle_playlist()
             
         else:
-            await m.reply_text(f"🚫 **Can't Shuffle Playlist For Less Than 3 Video !**")
+            await m.reply_text(f"🚫 **Nu pot amesteca playlist'ul, sau sunt mai putin de 3 videouri !**")
 
 
 @Client.on_message(filters.command(["clrlist", f"clrlist@{Config.BOT_USERNAME}"]) & admin_filter & (filters.chat(Config.CHAT_ID) | filters.private | filters.chat(Config.LOG_GROUP)))
 async def clear_play_list(client, m: Message):
     if not Config.CALL_STATUS:
-        return await m.reply_text("🤖 **Didn't Joined Video Chat !**")
+        return await m.reply_text("🤖 **Nu am intrat inca pe Video Voice !**")
     if not Config.playlist:
         return await m.reply_text("🚫 **Empty Playlist !**")
     Config.playlist.clear()   
-    await m.reply_text(f"✅ **Playlist Cleared !**")
+    await m.reply_text(f"✅ **Playlist Curatat !**")
     await start_stream()
 
 
@@ -174,16 +174,16 @@ async def stream(client, m: Message):
         text = m.text.split(" ", 1)
         link = text[1]
     else:
-        return await m.reply_text("❗ **Send Me An Live Stream Link / YouTube Live Stream Link To Start Live Streaming !**")
+        return await m.reply_text("❗ **Te rog sa trimiti un link de stream sau un video de pe YouTube pentru a porni streamul video !**")
     regex = r"^(?:https?:\/\/)?(?:www\.)?youtu\.?be(?:\.com)?\/?.*(?:watch|embed)?(?:.*v=|v\/|\/)([\w\-_]+)\&?"
     match = re.match(regex,link)
     if match:
         stream_link=await get_link(link)
         if not stream_link:
-            return await m.reply_text("🚫 **Invalid Stream Link !**")
+            return await m.reply_text("🚫 **Link de stream invalid !**")
     else:
         stream_link=link
-    await m.reply_text(f"▶️ **Started [Live Streaming]({stream_link}) !**", disable_web_page_preview=True)
+    await m.reply_text(f"▶️ **Acum redau [Stream LIVE]({stream_link}) !**", disable_web_page_preview=True)
     await stream_from_link(stream_link)
     
 
@@ -200,11 +200,11 @@ allcmd = ["play", "playlist", f"play@{Config.BOT_USERNAME}", f"playlist@{Config.
 async def not_chat(_, m: Message):
     buttons = [
             [
-                InlineKeyboardButton("CHANNEL", url="https://t.me/AsmSafone"),
-                InlineKeyboardButton("SUPPORT", url="https://t.me/SafoTheBot"),
+                InlineKeyboardButton("CHANNEL", url="https://t.me/OTRportal"),
+                InlineKeyboardButton("SUPPORT", url="https://t.me/OTRofficial"),
             ],
             [
-                InlineKeyboardButton("🤖 MAKE YOUR OWN BOT 🤖", url="https://heroku.com/deploy?template=https://github.com/AsmSafone/VideoPlayerBot/tree/alpha"),
+                InlineKeyboardButton("🤖 TE SALUTA BOTU 🤖", url="https://www.tomorrowtides.com/ai-fost-trollat-de-lupiidinhaita--otrportal.html"),
             ]
          ]
-    await m.reply_text(text="**Sorry, You Can't Use This Bot In This Group 🤷‍♂️! But You Can Make Your Own Bot Like This From The [Source Code](https://github.com/AsmSafone/VideoPlayerBot/tree/alpha) Below 😉!**", reply_markup=InlineKeyboardMarkup(buttons), disable_web_page_preview=True)
+    await m.reply_text(text="**Sa ne sugi pula, nu pot folosi bot'u in acest grup 🤷‍♂️! Dar il poti folosi aici pe acest grup @filme4kpetelegram @otrofficial @lupiidinhaita 😉!**", reply_markup=InlineKeyboardMarkup(buttons), disable_web_page_preview=True)
