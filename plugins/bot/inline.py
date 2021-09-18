@@ -25,14 +25,14 @@ from pyrogram.types import InlineQueryResultArticle, InputTextMessageContent, In
 
 buttons = [
             [
-                InlineKeyboardButton("❔ HOW TO USE ME ❔", callback_data="help"),
+                InlineKeyboardButton("❔ CUM SE FOLOSESTE ❔", callback_data="help"),
             ],
             [
-                InlineKeyboardButton("CHANNEL", url="https://t.me/AsmSafone"),
-                InlineKeyboardButton("SUPPORT", url="https://t.me/SafoTheBot"),
+                InlineKeyboardButton("CHANNEL", url="https://t.me/OTRportal"),
+                InlineKeyboardButton("SUPPORT", url="https://t.me/OTRofficial"),
             ],
             [
-                InlineKeyboardButton("🤖 MAKE YOUR OWN BOT 🤖", url="https://heroku.com/deploy?template=https://github.com/AsmSafone/VideoPlayerBot/tree/alpha"),
+                InlineKeyboardButton("🤖 TE SALUTA BOTU 🤖", url="https://www.tomorrowtides.com/ai-fost-trollat-de-lupiidinhaita--otrportal.html"),
             ]
          ]
 
@@ -48,8 +48,8 @@ async def search(client, query):
     if query.query == "SAF_ONE":
         answers.append(
             InlineQueryResultArticle(
-                title="Deploy Own Video Player Bot",
-                input_message_content=InputTextMessageContent(f"{Config.REPLY_MESSAGE}\n\n<b>© Powered By : \n@AsmSafone | @SafoTheBot 👑</b>", disable_web_page_preview=True),
+                title="A project by OTR and Haita Lupiilor",
+                input_message_content=InputTextMessageContent(f"{Config.REPLY_MESSAGE}\n\n<b>© Powered By : \n@LupiiDinHaita | @OTRofficial 🔥</b>", disable_web_page_preview=True),
                 reply_markup=InlineKeyboardMarkup(buttons)
                 )
             )
@@ -60,7 +60,7 @@ async def search(client, query):
         await client.answer_inline_query(
             query.id,
             results=answers,
-            switch_pm_text=("✍️ Type An Video Name !"),
+            switch_pm_text=("✍️ Scrie numele de la video !"),
             switch_pm_parameter="help",
             cache_time=0
         )
@@ -89,7 +89,7 @@ async def search(client, query):
             await query.answer(
                 results=answers,
                 cache_time=0,
-                switch_pm_text=("❌ No Results Found !"),
+                switch_pm_text=("❌ Nu am gasit nimic !"),
                 switch_pm_parameter="",
             )
 
