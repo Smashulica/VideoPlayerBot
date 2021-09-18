@@ -59,9 +59,9 @@ async def skip_track(_, m: Message):
             for i in items:
                 if 2 <= i <= (len(Config.playlist) - 1):
                     Config.playlist.pop(i)
-                    await m.reply_text(f"⏭ **Succesfully Skipped !** \n{i}. **{Config.playlist[i][1]}**")
+                    await m.reply_text(f"⏭ **Am dat skip !** \n{i}. **{Config.playlist[i][1]}**")
                 else:
-                    await m.reply_text(f"❌ **Can't Skip First Two Video - {i} !**")
+                    await m.reply_text(f"❌ **Nu pot da skip la primele 2 videouri - {i} !**")
         except (ValueError, TypeError):
             await m.reply_text("🚫 **Invalid Input !**")
     pl=await get_playlist_str()
@@ -73,20 +73,20 @@ async def skip_track(_, m: Message):
 @Client.on_message(filters.command(["pause", f"pause@{Config.BOT_USERNAME}"]) & admin_filter & (filters.chat(Config.CHAT_ID) | filters.private))
 async def pause_playing(_, m: Message):
     if Config.PAUSE:
-        return await m.reply_text("⏸ **Already Paused !**")
+        return await m.reply_text("⏸ **Sunt deja pus pe pauza !**")
     if not Config.CALL_STATUS:
-        return await m.reply_text("🤖 **Nothing Is Playing !**")
-    await m.reply_text("⏸ **Paused Streaming !**")
+        return await m.reply_text("🤖 **Nu reda nimic in acest moment !**")
+    await m.reply_text("⏸ **Am pus streamul pe pauza !**")
     await pause()
     
 
 @Client.on_message(filters.command(["resume", f"resume@{Config.BOT_USERNAME}"]) & admin_filter & (filters.chat(Config.CHAT_ID) | filters.private))
 async def resume_playing(_, m: Message):
     if not Config.PAUSE:
-        return await m.reply_text("▶️ **Already Resumed !**")
+        return await m.reply_text("▶️ **Am scos deja streamul de pe pauza !**")
     if not Config.CALL_STATUS:
-        return await m.reply_text("🤖 **Nothing Is Paused !**")
-    await m.reply_text("▶️ **Resumed Streaming !**")
+        return await m.reply_text("🤖 **Nu este nimic pus pe pauza in acest moment !**")
+    await m.reply_text("▶️ **Am scos streamul de pe pauza !**")
     await resume()
     
 
@@ -94,17 +94,17 @@ async def resume_playing(_, m: Message):
 @Client.on_message(filters.command(["volume", f"volume@{Config.BOT_USERNAME}"]) & admin_filter & (filters.chat(Config.CHAT_ID) | filters.private))
 async def set_vol(_, m: Message):
     if not Config.CALL_STATUS:
-        return await m.reply_text("🤖 **Didn't Joined Video Chat !**")
+        return await m.reply_text("🤖 **Inca nu am intrat pe nici un voice chat !**")
     if len(m.command) < 2:
-        await m.reply_text("🤖 **Please Pass Volume (0-200) !**")
+        await m.reply_text("🤖 **Te rog sa tastezi un volum intre (0-200) !**")
         return
-    await m.reply_text(f"🔉 **Volume Set To {m.command[1]} !**")
+    await m.reply_text(f"🔉 **Volum setat la {m.command[1]} !**")
     await volume(int(m.command[1]))
     
 
 @Client.on_message(filters.command(["replay", f"replay@{Config.BOT_USERNAME}"]) & admin_filter & (filters.chat(Config.CHAT_ID) | filters.private))
 async def replay_playout(client, m: Message):
     if not Config.CALL_STATUS:
-        return await m.reply_text("🤖 **Didn't Joined Video Chat !**")
-    await m.reply_text("🔂 **Replaying Stream !**")
+        return await m.reply_text("🤖 **Nu am intrat inca pe Video Voice !**")
+    await m.reply_text("🔂 **Dau replay la stream !**")
     await restart_playout()
